@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         ]
     }).then((posts) => {
     console.log(posts);
-    res.render('home', { Post });
+    res.render('home', { posts });
 })
 });
 
