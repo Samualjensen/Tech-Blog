@@ -9,7 +9,7 @@ const postData = [
 	{
 		"title": "Post Two",
 		"post_content": "This is the second post",
-		"user_id": 4
+		"user_id": 2
 	},
 	{
 		"title": "Post three",
