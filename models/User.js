@@ -1,8 +1,3 @@
-//*
-//* This is the database model for User
-//* this stores the username, email, and passowrd data
-//*
-
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');

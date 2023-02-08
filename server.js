@@ -33,7 +33,7 @@ app.set('view engine', 'handlebars');
 
 const handlebars = require('handlebars');
 
-handlebars.registerHelper('format_date', function(date) {
+handlebars.registerHelper('format_date', function (date) {
   const month = new Date(date).getMonth() + 1;
   const day = new Date(date).getDate();
   const year = new Date(date).getFullYear();
@@ -53,9 +53,5 @@ app.use(routes);
 
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () =>
-    console.log(
-      `\nServer running on port ${PORT}. Visit http://localhost:${PORT} and create an account!`
-    )
-  );
+  app.listen(PORT, () => console.log(`App listening on port ${PORT}!  http://localhost:${PORT}`));
 });
