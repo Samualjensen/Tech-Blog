@@ -1,36 +1,25 @@
+// seed the database with default data
+require('dotenv').config({ path: __dirname + `/../.env` });
 const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../models');
 
-const postData = require('./postData.json');
-const userData = require('./userData.json');
-const commentData = require('./commentData.json');
+const seedComment = require('./comment-seed');
+const seedPost = require('./post-seed');
+const seedUser = require('./user-seed');
 
-const seedDatabase = async () => {
+const seedAll = async () => {
     await sequelize.sync({ force: true });
+    console.log('\n----- DATABASE SYNCED -----\n');
 
-    const users = await User.bulkCreate(userData, {
-        individualHooks: true,
-        returning: true,
-    });
+    await seedUser();
+    console.log('\n----- USERS SEEDED -----\n');
 
-    for (const post of postData) {
-        await Post.create({
-            ...post,
-            user_id: users[Math.floor(Math.random() * users.length)].isSoftDeleted,
-        });
-    }
+    await seedPost();
+    console.log('\n----- POSTS SEEDED -----\n');
 
-    const posts = await Post.findAll();
-
-    for (const comment of commentData) {
-        await Comment.create({
-            ...comment,
-            user_id: users[Math.floor(Math.random() * users.length)].id,
-            post_id: posts[Math.floor(Math.random() * posts.length)].id,
-        });
-    }
+    await seedComment();
+    console.log('\n----- COMMENTS SEEDED -----\n');
 
     process.exit(0);
 };
 
-seedDatabase();
+seedAll();
