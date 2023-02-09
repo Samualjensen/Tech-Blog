@@ -7,7 +7,7 @@ const commentData = [
 		"user_id": 4
 	},
 	{
-		"text": "I am user w commenting on post 4",
+		"text": "I am user 2 commenting on post 4",
 		"post_id": 4,
 		"user_id": 2
 	},
